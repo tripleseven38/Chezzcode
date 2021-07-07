@@ -247,13 +247,7 @@ function FindDiagonal(startsquare, endsquare) {
   }
 }
 
-/* If Top left to Bottom Right
-Find Distance between y-value of start and y-value of end 
 
-
-
-
-*/
 
 
 
@@ -261,22 +255,22 @@ Find Distance between y-value of start and y-value of end
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 var queen = document.getElementById("queenpiece");
-ctx.drawImage(queen, squares[36][1], squares[36][2]-77.5);
 // starting square
 
-DrawBoard(780)
 
-for (i = 0; i < 64; i++) {
-  FindDiagonal(36, i)
-  FindOrthogonal(36, i)
+
+
+
+
+
+
+
+
+
+
+function FindCoor(event) {
+  var x = event.clientX;
+  var y = event.clientY;
+  var coords = "X coords: " + x + ", Y coords: " + y;
+  document.getElementById("demo6").innerHTML = coords;  
 }
-
-document.getElementById("demo4").innerHTML = legalmoves
-
-
-
-
-
-
-
-
