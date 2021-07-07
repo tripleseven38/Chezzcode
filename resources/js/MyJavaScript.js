@@ -307,7 +307,7 @@ function FindDiagonal(startsquare, endsquare) {
             if (checksquareTRL != squares[num][0]) {
               count = count + total
             } else {
-              count = count + 9
+              count = count + 10
               document.getElementById("demo").innerHTML = "Not Valid"
             }
           }
