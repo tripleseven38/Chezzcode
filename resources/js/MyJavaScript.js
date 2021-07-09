@@ -1,4 +1,4 @@
-const DrawBoard = require("./Board").DrawBoard;
+// const DrawBoard = require("./Board").DrawBoard;
 
 var squarelength = 780 / 8;
 var squarestartx = 780 / 30;
@@ -311,5 +311,6 @@ function FindCoor(event) {
 }
 
 // example call 
-DrawBoard(780)
-sayHi("hello Adrian")
+// DrawBoard(780)
+// sayHi("hello Adrian")
+alert("bing")
