@@ -1,9 +1,7 @@
-// const DrawBoard = require("./Board").DrawBoard;
-
 var squarelength = 780 / 8;
 var squarestartx = 780 / 30;
 var squarestarty = 780 / 1.04;
-var pieces = [["queen", 0], ["rook", 0], ["rook", 0], ["pawn", 0]]
+var pieces = [["queen", 7]]
 var legalmoves = []
 var moves = [0, 3]
 var plays = [3]
@@ -31,15 +29,19 @@ for (i = 1; i < 65; i++) {
   squares.push([i, ix, iy + 20])
 }
 
+document.getElementById("demo").innerHTML = squares
+
 function FindSquare(x, y) {
   for (i = 0; i < 64; i++) {
     var xsquare = squares[i][1] + 97.5
+    document.getElementById("demo2").innerHTML = xsquare
     var ysquare = squares[i][2] - 97.5
     if (x > squares[i][1]) {
       if (x < xsquare) {
         if (y < squares[i][2]) {
           if (y > ysquare) {
             clickedsquare.push(i)
+            break
           }
         }
       }
@@ -86,7 +88,7 @@ function FindOrthogonal(startsquare, endsquare) {
       var gridy3 = gridy2 +0.901
       var gridy4 = gridy3 - 0.01
       while (count < gridy2) {
-        var checksquarey = squares[startsquare][0] - count
+        var checksquarey = squares[startsquare][0] + count
         for (d = 0; d < pieces.length; d++) {
           var num = pieces[d][1]
           if (checksquarey != squares[num][0]) {
@@ -288,18 +290,29 @@ var ctx = c.getContext("2d");
 var queen = document.getElementById("queenpiece");
 // starting square
 
+function FindLegalMoves() {
+  for (i = 0; i < 64; i++) {
+    FindOrthogonal(0, i)
+    FindDiagonal(0, i)
+  }
+}
 
-document.getElementById("demo").innerHTML = works
 
 function FindCoor(event) {
-  document.getElementById("demo2").innerHTML = clickedsquare
   var rect = myCanvas.getBoundingClientRect();
   var x = event.clientX - rect.left;
   var y = event.clientY - rect.top;
   var coords = "X coords: " + x + ", Y coords: " + y;
   FindSquare(x, y)
+  document.getElementById("demo3").innerHTML = clickedsquare
   if (works == 1) {
-    document.getElementById("demo3").innerHTML = clickedsquare
+    FindLegalMoves()
+    document.getElementById("demo4").innerHTML = legalmoves
+    for (i = 0; i < legalmoves.length; i++) {
+      if (clickedsquare[clickedsquare.length - 1] == legalmoves[i]) {
+        document.getElementById("demo5").innerHTML = "hi"
+      }
+    }
   }
   else if (works == 0) {
     if (clickedsquare[clickedsquare.length - 1] == clickedsquare[clickedsquare.length - 2]) {
@@ -310,7 +323,7 @@ function FindCoor(event) {
   }
 }
 
-// example call 
-// DrawBoard(780)
-// sayHi("hello Adrian")
-alert("bing")
+FindLegalMoves()
+document.getElementById("demo4").innerHTML = legalmoves
+
+FindOrthogonal(0, 6)

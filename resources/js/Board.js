@@ -1,3 +1,6 @@
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
 // Draw First Pattern of Row
 function drawFirstPattern(x, l) {
   var e = l / 8
@@ -16,13 +19,13 @@ function drawFirstPattern(x, l) {
 
 // Draw second pattern of row
 function drawSecondPattern(y, l) {
+  var c = document.getElementById("myCanvas");
   var n = l / 8
   var q = l / 35
   var b;
   for (b = 0; b < 4; b+=1) {
     var g = n * b * 2
     var h = g+n+q
-    var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.beginPath();
     ctx.rect(h, y, n, n);
@@ -82,14 +85,15 @@ function WriteLetters(x) {
   }
 }
 
-module.exports = {
-  DrawBoard: function(x) {
-    DrawRows(x)
-    DrawRows2(x)
-    WriteLetters(x)
-    WriteNumbers(x)
-  },
-  sayHi: function(msg) {
-    alert(msg)
-  }
+function DrawBoard(x) {
+  WriteLetters(x)
+  WriteNumbers(x)
+  DrawRows(x)
+  DrawRows2(x)
 }
+
+
+DrawBoard(780)
+
+
+
